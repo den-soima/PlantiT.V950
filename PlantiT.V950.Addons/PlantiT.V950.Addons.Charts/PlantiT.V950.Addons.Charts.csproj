@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{1E101C45-6297-4745-8657-393FAB6762C2}</ProjectGuid>
     <OutputType>library</OutputType>
-    <RootNamespace>PlantiT.V950.Addons.Charts</RootNamespace>
+    <RootNamespace>PlantiT.Forms.Host</RootNamespace>
     <AssemblyName>PlantiT.V950.Addons.Charts</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -34,14 +35,29 @@
     <Reference Include="Fluent">
       <HintPath>C:\PROLEIT\BIN\Extern.NET\FluentRibbon_2_0\Fluent.dll</HintPath>
     </Reference>
+    <Reference Include="PlantiT.Core">
+      <HintPath>C:\PROLEIT\BIN\PlantiT.V950\PlantiT.Core.dll</HintPath>
+    </Reference>
     <Reference Include="PlantiT.Forms">
       <HintPath>C:\PROLEIT\BIN\PlantiT.V950\PlantiT.Forms.dll</HintPath>
     </Reference>
     <Reference Include="PlantiT.Forms.Host">
       <HintPath>C:\PROLEIT\BIN\PlantiT.V950\PlantiT.Forms.Host.dll</HintPath>
     </Reference>
+    <Reference Include="PlantiT.Forms.Image, Version=9.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\PROLEIT\BIN\PlantiT.V950\PlantiT.Forms.Image.dll</HintPath>
+    </Reference>
     <Reference Include="PlantiT.Runtime.Configuration">
       <HintPath>C:\PROLEIT\BIN\PlantiT.V950\PlantiT.Runtime.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="PlantiT.Runtime.Database, Version=9.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\PROLEIT\BIN\PlantiT.V950\PlantiT.Runtime.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="PlantiT.Runtime.Language, Version=9.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\PROLEIT\BIN\PlantiT.V950\PlantiT.Runtime.Language.dll</HintPath>
     </Reference>
     <Reference Include="PlantiT.Runtime.Security">
       <HintPath>C:\PROLEIT\BIN\PlantiT.V950\PlantiT.Runtime.Security.dll</HintPath>
@@ -51,6 +67,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -62,18 +79,31 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\DBHelper.cs" />
     <Compile Include="Host\HostInter.cs" />
+    <Compile Include="Models\ConnectionViewModel.cs" />
+    <Compile Include="Models\MeasuredCurveModel.cs" />
+    <Compile Include="Models\MeasuredViewGroupModel.cs" />
+    <Compile Include="Models\MeasuredViewModel.cs" />
+    <Compile Include="Models\MeasuredViewRepository.cs" />
+    <Compile Include="MvaLineChart\HostMvaLineChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MvaLineChart\HostMvaLineChart.Designer.cs">
+      <DependentUpon>HostMvaLineChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="MvaLineChart\MvaLineChartRibbon.xaml.cs">
       <DependentUpon>MvaLineChartRibbon.xaml</DependentUpon>
     </Compile>
     <Compile Include="MvaLineChart\MvaLineChart.xaml.cs">
       <DependentUpon>MvaLineChart.xaml</DependentUpon>
-      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -88,13 +118,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="UserControl1test.xaml.cs">
-      <DependentUpon>UserControl1test.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="System\ErrorHandler.cs" />
+    <EmbeddedResource Include="MvaLineChart\HostMvaLineChart.resx">
+      <DependentUpon>HostMvaLineChart.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="PlantiT.V950.Addons.Charts.lnx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -109,11 +141,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControl1test.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy $(TargetPath) C:\PROLEIT\BIN\PlantiT.V950
+</PostBuildEvent>
+  </PropertyGroup>
 </Project>

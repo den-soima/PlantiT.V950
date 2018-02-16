@@ -5,6 +5,12 @@ VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantiT.V950.Addons.Charts", "PlantiT.V950.Addons.Charts\PlantiT.V950.Addons.Charts.csproj", "{1E101C45-6297-4745-8657-393FAB6762C2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{011BD957-97FF-4DE8-88A3-AE183086B11B}"
+	ProjectSection(SolutionItems) = preProject
+		PiTHostCommand.sql = PiTHostCommand.sql
+		PiTHostConfiguration.sql = PiTHostConfiguration.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

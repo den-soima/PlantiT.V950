@@ -1,0 +1,5 @@
+copy $(TargetPath) C:\PROLEIT\BIN\PlantiT.V950
+copy $(TargetPath).lng C:\PROLEIT\BIN\PlantiT.V950
+copy $(TargetDir)deu\$(TargetFileName).deu C:\PROLEIT\BIN\PlantiT.V950
+copy $(TargetDir)eng\$(TargetFileName).eng C:\PROLEIT\BIN\PlantiT.V950
+copy $(TargetDir)rus\$(TargetFileName).nld C:\PROLEIT\BIN\PlantiT.V950

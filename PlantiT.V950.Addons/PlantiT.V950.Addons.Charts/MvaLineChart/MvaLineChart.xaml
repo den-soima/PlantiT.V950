@@ -5,9 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PlantiT.Forms.Host"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="900" d:DesignWidth="900">
 	<Grid>
-		<Button Content="Button" HorizontalAlignment="Left" Height="106" Margin="71,79,0,0" VerticalAlignment="Top" Width="145"/>
-
+		<DatePicker HorizontalAlignment="Left" Height="30" Margin="690,10,0,0" VerticalAlignment="Top" Width="190"/>
+		<DatePicker HorizontalAlignment="Left" Margin="465,10,0,0" VerticalAlignment="Top" Height="30" Width="220"/>		
+		<Label Content="View" HorizontalAlignment="Left" Height="25" Margin="10,9,0,0" VerticalAlignment="Top" Width="100"/>
+		<ComboBox ItemsSource="{Binding Path=MeasuredViews}" DisplayMemberPath="ViewName" SelectedValuePath="ViewName"
+			HorizontalAlignment="Left" Height="30" Margin="275,10,0,0" VerticalAlignment="Top" Width="160"/>
+		<ComboBox  ItemsSource="{Binding Path=MeasuredViewGroups}" DisplayMemberPath="Name" SelectedValuePath="Name"
+			HorizontalAlignment="Left" Height="30" Margin="85,10,0,0" VerticalAlignment="Top" Width="155"/>
+		<Menu HorizontalAlignment="Left" Height="25" Margin="80,90,0,0" VerticalAlignment="Top" Width="350"/>
 	</Grid>
 </UserControl>
